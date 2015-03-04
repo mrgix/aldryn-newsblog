@@ -15,11 +15,16 @@ class ArticleIndex(get_index_base()):
 
     index_title = True
 
+    def get_language(self, obj=None):
+        if obj:
+            return obj.get_current_language()
+        return None
+
     def get_title(self, obj):
-        return obj.safe_translation_getter('title')
+        return obj.safe_translation_getter('title', language_code=self.get_current_language(obj=obj))
 
     def get_description(self, obj):
-        return obj.safe_translation_getter('lead_in')
+        return obj.safe_translation_getter('lead_in', language_code=self.get_current_language(obj=obj))
 
     def index_queryset(self, using=None):
         self._get_backend(using)

@@ -653,8 +653,9 @@ class TestAldrynNewsBlog(NewsBlogTestsMixin, TransactionTestCase):
                 qs = self.index.index_queryset(language)
                 self.assertEqual(qs.count(), 1)
                 self.assertEqual(qs.translated(language, title__icontains='title').count(), 1)
-                # the language is correctly setup
-                for article_de in qs:
+            for article_de in qs:
+                with switch_language(article_de, 'de'):
+                    # the language is correctly setup
                     self.assertEqual(self.index.get_title(article_de), 'de title')
                     self.assertEqual(self.index.get_description(article_de), 'de lead in')
 
