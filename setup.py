@@ -17,7 +17,8 @@ REQUIREMENTS = [
     'aldryn-categories',
     'aldryn-reversion',
     'six',
-    'pytz'
+    'pytz',
+    'aldryn-boilerplates',
 ]
 
 CLASSIFIERS = [
